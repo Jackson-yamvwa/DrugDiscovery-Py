@@ -6,6 +6,7 @@ from drugdiscovery.io.csv_loader import load_library
 from drugdiscovery.io.docking_scores import load_docking_scores
 from drugdiscovery.prepare.excel_library import prepare_library_from_excel
 from drugdiscovery.prioritization.ranker import rank_hits
+from drugdiscovery.reports.summary import summarize_ranked_results
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -39,6 +40,13 @@ def build_parser() -> argparse.ArgumentParser:
     prepare_parser.add_argument("--id-column", default="compoundID")
     prepare_parser.add_argument("--smiles-column", default="Smiles")
     prepare_parser.add_argument("--mw-column", default="MW")
+
+    summarize_parser = subparsers.add_parser(
+        "summarize",
+        help="Summarize a ranked DrugDiscovery-Py CSV output file.",
+    )
+    summarize_parser.add_argument("--input", required=True)
+    summarize_parser.add_argument("--top", type=int, default=10)
 
     return parser
 
@@ -77,6 +85,11 @@ def run_prepare_library(args: argparse.Namespace) -> None:
     print(f"Output written to: {args.output}")
 
 
+def run_summarize(args: argparse.Namespace) -> None:
+    summary = summarize_ranked_results(args.input, top_n=args.top)
+    print(summary)
+
+
 def main() -> None:
     parser = build_parser()
     args = parser.parse_args()
@@ -85,6 +98,8 @@ def main() -> None:
         run_rank(args)
     elif args.command == "prepare-library":
         run_prepare_library(args)
+    elif args.command == "summarize":
+        run_summarize(args)
     else:
         parser.error(f"Unknown command: {args.command}")
 
