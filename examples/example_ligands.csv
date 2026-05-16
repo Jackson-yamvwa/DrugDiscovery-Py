@@ -1,0 +1,5 @@
+compound_id,smiles,molecular_weight,hbd,hba,tpsa,rotatable_bonds,docking_score
+DD001,CCO,46.07,1,1,20.23,0,-4.2
+DD002,CC(=O)Oc1ccccc1C(=O)O,180.16,1,4,63.60,3,-6.8
+DD003,c1ccccc1,78.11,0,0,0.00,0,-3.9
+DD004,CCN(CC)CCOC(=O)c1ccccc1,221.30,0,3,29.54,6,-7.1
