@@ -29,3 +29,7 @@ htmlcov/
 # Data outputs
 outputs/
 *.log
+
+# Local datasets
+data/raw/
+data/processed/
