@@ -3,6 +3,7 @@ from pathlib import Path
 
 from drugdiscovery.io.csv_loader import load_library
 from drugdiscovery.io.docking_scores import load_docking_scores
+from drugdiscovery.prepare.excel_library import prepare_library_from_excel
 from drugdiscovery.prioritization.ranker import rank_hits
 
 
@@ -18,21 +19,20 @@ def build_parser() -> argparse.ArgumentParser:
         "rank",
         help="Rank compounds using descriptors, docking scores, and drug-likeness filters.",
     )
-    rank_parser.add_argument(
-        "--ligands",
-        required=True,
-        help="Path to ligand library CSV file.",
+    rank_parser.add_argument("--ligands", required=True)
+    rank_parser.add_argument("--docking", required=False)
+    rank_parser.add_argument("--output", required=True)
+
+    prepare_parser = subparsers.add_parser(
+        "prepare-library",
+        help="Prepare a DrugDiscovery-Py ligand CSV from an Excel workbook.",
     )
-    rank_parser.add_argument(
-        "--docking",
-        required=False,
-        help="Optional path to docking-score CSV file.",
-    )
-    rank_parser.add_argument(
-        "--output",
-        required=True,
-        help="Path to output ranked CSV file.",
-    )
+    prepare_parser.add_argument("--input", required=True)
+    prepare_parser.add_argument("--output", required=True)
+    prepare_parser.add_argument("--sheet", default=0)
+    prepare_parser.add_argument("--id-column", default="compoundID")
+    prepare_parser.add_argument("--smiles-column", default="Smiles")
+    prepare_parser.add_argument("--mw-column", default="MW")
 
     return parser
 
@@ -54,12 +54,28 @@ def run_rank(args: argparse.Namespace) -> None:
     print(f"Output written to: {output_path}")
 
 
+def run_prepare_library(args: argparse.Namespace) -> None:
+    prepared = prepare_library_from_excel(
+        input_path=args.input,
+        output_path=args.output,
+        id_column=args.id_column,
+        smiles_column=args.smiles_column,
+        mw_column=args.mw_column,
+        sheet_name=args.sheet,
+    )
+
+    print(f"Prepared {len(prepared)} compounds.")
+    print(f"Output written to: {args.output}")
+
+
 def main() -> None:
     parser = build_parser()
     args = parser.parse_args()
 
     if args.command == "rank":
         run_rank(args)
+    elif args.command == "prepare-library":
+        run_prepare_library(args)
     else:
         parser.error(f"Unknown command: {args.command}")
 
