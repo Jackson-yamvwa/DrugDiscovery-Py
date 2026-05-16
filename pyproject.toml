@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "drugdiscovery-py"
+version = "0.1.0"
+description = "A modular Python toolkit for early-stage computational drug discovery and ligand prioritisation."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    {name = "Jackson Yamvwa"}
+]
+license = {text = "Apache-2.0"}
+keywords = [
+    "drug discovery",
+    "computational pharmacology",
+    "ligand prioritisation",
+    "molecular design",
+    "docking",
+    "cheminformatics"
+]
+dependencies = [
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "matplotlib>=3.7"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "jupyter",
+    "scipy",
+    "scikit-learn"
+]
+
+[project.scripts]
+drugdiscovery = "drugdiscovery.cli:main"
