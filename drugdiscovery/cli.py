@@ -6,6 +6,7 @@ from drugdiscovery.io.csv_loader import load_library
 from drugdiscovery.io.docking_scores import load_docking_scores
 from drugdiscovery.prepare.excel_library import prepare_library_from_excel
 from drugdiscovery.prioritization.ranker import rank_hits
+from drugdiscovery.reports.export import export_top_candidates
 from drugdiscovery.reports.summary import summarize_ranked_results
 
 
@@ -47,6 +48,15 @@ def build_parser() -> argparse.ArgumentParser:
     )
     summarize_parser.add_argument("--input", required=True)
     summarize_parser.add_argument("--top", type=int, default=10)
+
+    export_parser = subparsers.add_parser(
+        "export-top",
+        help="Export the top-ranked candidates from a ranked CSV file.",
+    )
+    export_parser.add_argument("--input", required=True)
+    export_parser.add_argument("--output", required=True)
+    export_parser.add_argument("--top", type=int, default=50)
+    export_parser.add_argument("--sort-column", default="priority_score")
 
     return parser
 
@@ -90,6 +100,18 @@ def run_summarize(args: argparse.Namespace) -> None:
     print(summary)
 
 
+def run_export_top(args: argparse.Namespace) -> None:
+    top = export_top_candidates(
+        input_path=args.input,
+        output_path=args.output,
+        top_n=args.top,
+        sort_column=args.sort_column,
+    )
+
+    print(f"Exported {len(top)} top candidates.")
+    print(f"Output written to: {args.output}")
+
+
 def main() -> None:
     parser = build_parser()
     args = parser.parse_args()
@@ -100,6 +122,8 @@ def main() -> None:
         run_prepare_library(args)
     elif args.command == "summarize":
         run_summarize(args)
+    elif args.command == "export-top":
+        run_export_top(args)
     else:
         parser.error(f"Unknown command: {args.command}")
 
