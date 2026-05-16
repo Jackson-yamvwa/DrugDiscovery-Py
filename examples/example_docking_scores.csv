@@ -1,0 +1,5 @@
+compound_id,docking_score,docking_program,pose_id
+DD001,-4.2,vina,pose_1
+DD002,-6.8,vina,pose_1
+DD003,-3.9,vina,pose_1
+DD004,-7.1,vina,pose_1
