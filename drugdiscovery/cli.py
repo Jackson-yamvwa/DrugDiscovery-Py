@@ -1,6 +1,7 @@
 import argparse
 from pathlib import Path
 
+from drugdiscovery.descriptors.smiles_basic import add_basic_smiles_descriptors
 from drugdiscovery.io.csv_loader import load_library
 from drugdiscovery.io.docking_scores import load_docking_scores
 from drugdiscovery.prepare.excel_library import prepare_library_from_excel
@@ -22,6 +23,11 @@ def build_parser() -> argparse.ArgumentParser:
     rank_parser.add_argument("--ligands", required=True)
     rank_parser.add_argument("--docking", required=False)
     rank_parser.add_argument("--output", required=True)
+    rank_parser.add_argument(
+        "--estimate-basic-descriptors",
+        action="store_true",
+        help="Fill missing HBD, HBA, TPSA, and rotatable-bond values using approximate SMILES estimators.",
+    )
 
     prepare_parser = subparsers.add_parser(
         "prepare-library",
@@ -39,6 +45,9 @@ def build_parser() -> argparse.ArgumentParser:
 
 def run_rank(args: argparse.Namespace) -> None:
     library = load_library(args.ligands)
+
+    if args.estimate_basic_descriptors:
+        library = add_basic_smiles_descriptors(library)
 
     docking_scores = None
     if args.docking:
