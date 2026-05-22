@@ -1,0 +1,11 @@
+Residue,ResName,contact_events,frames_present,occupancy_pct,interaction_type
+148,ASP,936,936,93.51,HBond
+150,TYR,895,895,89.41,HBond
+84,VAL,394,389,38.86,Hydrophobic
+214,ILE,204,204,20.38,Hydrophobic
+97,ALA,195,195,19.48,Hydrophobic
+200,LEU,183,179,17.88,Hydrophobic
+76,LEU,156,152,15.18,Hydrophobic
+131,MET,47,47,4.70,Hydrophobic
+149,VAL,7,7,0.70,Hydrophobic
+150,TYR,5,5,0.50,Hydrophobic
