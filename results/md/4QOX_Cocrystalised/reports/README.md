@@ -29,15 +29,24 @@
 4QOX-Cocrystalised-multisim_checkpoint
 ```
 
+### Final production output/checkpoint files
+
+```text
+4QOX-Cocrystalised-multisim_checkpoint(1)
+4QOX-Cocrystalised-multisim_checkpoint_8
+4QOX-Cocrystalised-out.cfg
+4QOX-Cocrystalised-out.cms
+```
+
 ## Repository handling decision
 
 The uploaded files represent a full Desmond/Multisim run package for the 4QOX co-crystallized/reference ligand system. Binary/runtime files should not be committed directly unless Git LFS or external archival storage is configured.
 
 | File | Role | Repository decision |
 |---|---|---|
-| `4QOX-Cocrystalised.cfg` | Desmond run configuration | Document key settings; optionally commit later if needed |
-| `4QOX-Cocrystalised.cms` / `4QOX-Cocrystalised-in.cms` | Full Desmond system structure | Do not commit without Git LFS |
-| `4QOX-Cocrystalised.cpt` / `4QOX-Cocrystalised-multisim_checkpoint` | Checkpoint files | Do not commit without Git LFS |
+| `4QOX-Cocrystalised.cfg` / `4QOX-Cocrystalised-out.cfg` | Input/final Desmond run configuration | Document key settings; optionally commit later because text and compact |
+| `4QOX-Cocrystalised.cms` / `4QOX-Cocrystalised-in.cms` / `4QOX-Cocrystalised-out.cms` | Full Desmond system structure | Do not commit without Git LFS; `out.cms` is a large final system file |
+| `4QOX-Cocrystalised.cpt` / `4QOX-Cocrystalised-multisim_checkpoint` / `4QOX-Cocrystalised-multisim_checkpoint_8` | Checkpoint files | Do not commit without Git LFS |
 | `4QOX-Cocrystalised.ene` | Energy output | Do not commit without compression/LFS; parse summary first |
 | `4QOX-Cocrystalised.log` | Main Desmond execution log | Summarize key metadata; raw log optional if size acceptable |
 | `4QOX-Cocrystalised_multisim.log` | Multisim workflow log | Document stage progression and completion |
@@ -68,6 +77,14 @@ The uploaded files represent a full Desmond/Multisim run package for the 4QOX co
 | Velocity seed | 2007 |
 | Restraints | none for final production stage |
 | Checkpoint interval | 240.06 ps |
+
+## Final output file notes
+
+The final production configuration file `4QOX-Cocrystalised-out.cfg` is a compact text configuration that records the production-stage Desmond settings, including NPT ensemble, 310 K temperature, 1.01325 bar pressure, 100,000 ps simulation time, 0.002 ps main timestep, 100 ps trajectory interval, and 1.2 ps energy interval.
+
+The final production structure file `4QOX-Cocrystalised-out.cms` is a large Desmond CMS structure file and should be treated as a binary/large runtime artifact for repository purposes. It should be stored via Git LFS or external archival storage rather than committed directly to the standard Git history.
+
+The files `4QOX-Cocrystalised-multisim_checkpoint(1)` and `4QOX-Cocrystalised-multisim_checkpoint_8` are Multisim checkpoint artifacts. They are useful for workflow recovery/provenance but should not be committed directly without Git LFS.
 
 ## Multisim workflow summary
 
