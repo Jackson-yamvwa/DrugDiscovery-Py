@@ -1,0 +1,13 @@
+metric,mean,sd,min,max,median,window
+Prot_CA,2.7201,0.3932,0.000,3.989,2.708,overall
+Prot_Backbone,2.7457,0.3921,0.000,4.024,2.733,overall
+Prot_Sidechain,3.4670,0.3966,0.000,4.598,3.451,overall
+Prot_All_Heavy,3.0125,0.3921,0.000,4.239,2.992,overall
+Lig_wrt_Protein,1.1418,0.3270,0.000,2.411,1.107,overall
+Lig_wrt_Ligand,0.3384,0.1013,0.000,0.844,0.327,overall
+Prot_CA,2.9764,0.2935,2.356,3.989,2.944,frames_500_1000
+Prot_Backbone,2.9987,0.2943,2.356,4.024,2.970,frames_500_1000
+Prot_Sidechain,3.7483,0.2651,3.197,4.598,3.717,frames_500_1000
+Prot_All_Heavy,3.2818,0.2816,2.726,4.239,3.250,frames_500_1000
+Lig_wrt_Protein,1.1270,0.2829,0.459,2.319,1.098,frames_500_1000
+Lig_wrt_Ligand,0.3445,0.0981,0.123,0.676,0.334,frames_500_1000
