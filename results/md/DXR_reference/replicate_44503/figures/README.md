@@ -32,6 +32,15 @@ P-RMSF(3).png
 P-RMSF(2).svg
 ```
 
+### Protein secondary-structure figures
+
+```text
+P-SSE_Histogram(2).png
+P-SSE_Histogram(2).svg
+P-SSE_Timeline.png
+P-SSE_Timeline(1).svg
+```
+
 ## Figure interpretation summary
 
 These figures correspond to the **DXR reference replicate 44503** simulation and support the report summary stored under:
@@ -106,9 +115,13 @@ The PL-RMSD plot shows that protein Cα RMSD rises during early equilibration an
 
 The protein RMSF figure shows expected high-flexibility peaks in loop or terminal regions, while the ligand-contacting residues are largely located in relatively stable regions. This supports preservation of the reference binding-site scaffold during the replicate simulation.
 
+### Protein secondary structure
+
+The SSE histogram and timeline show broadly stable secondary-structure organization throughout the 100 ns trajectory. The total secondary-structure percentage remains close to the report-derived value of approximately **47.25%**, with persistent alpha-helical and beta-strand segments across the protein. The SSE timeline does not show global unfolding or large-scale secondary-structure loss, supporting preservation of the PfCDPK4 fold during the replicate simulation.
+
 ## Manuscript-ready figure interpretation
 
-The DXR reference replicate 44503 figures support stable ligand accommodation within the PfCDPK4 ATP-binding pocket during the 100 ns simulation. The 2D contact summary identifies persistent Asp148 and Tyr150 interactions, with approximate occupancies of 98% and 93%, respectively, and an additional Lys99 π-cation/contact contribution of approximately 39%. Ligand property plots indicate stable ligand compactness, low-to-moderate RMSD, limited intramolecular hydrogen bonding, and moderate solvent-exposure fluctuation. Contact histogram and timeline plots further indicate sustained interactions with Asp148, Tyr150, Glu154, and Glu197, while PL-RMSD shows protein stabilization around a moderate RMSD range and retention of ligand accommodation within the binding pocket. Ligand RMSF and torsion profiles suggest that the ligand retains its core binding orientation while allowing limited peripheral conformational flexibility. Together, these findings reinforce the reproducibility of the DXR reference interaction fingerprint across replicate simulations.
+The DXR reference replicate 44503 figures support stable ligand accommodation within the PfCDPK4 ATP-binding pocket during the 100 ns simulation. The 2D contact summary identifies persistent Asp148 and Tyr150 interactions, with approximate occupancies of 98% and 93%, respectively, and an additional Lys99 π-cation/contact contribution of approximately 39%. Ligand property plots indicate stable ligand compactness, low-to-moderate RMSD, limited intramolecular hydrogen bonding, and moderate solvent-exposure fluctuation. Contact histogram and timeline plots further indicate sustained interactions with Asp148, Tyr150, Glu154, and Glu197, while PL-RMSD shows protein stabilization around a moderate RMSD range and retention of ligand accommodation within the binding pocket. Protein RMSF and secondary-structure plots support preservation of the global fold and binding-site scaffold. Ligand RMSF and torsion profiles suggest that the ligand retains its core binding orientation while allowing limited peripheral conformational flexibility. Together, these findings reinforce the reproducibility of the DXR reference interaction fingerprint across replicate simulations.
 
 ## Comparison with previous DXR reference figure sets
 
@@ -119,6 +132,7 @@ The DXR reference replicate 44503 figures support stable ligand accommodation wi
 | Ligand compactness | stable | stable | stable | reproducible |
 | Ligand torsional behaviour | peripheral flexibility | peripheral flexibility | peripheral flexibility | expected for substituents |
 | Ligand accommodation | retained | retained | retained | no dissociation signal |
+| Secondary structure | stable | stable | stable | global fold preserved |
 
 ## Repository handling decision
 
@@ -143,6 +157,10 @@ results/md/DXR_reference/replicate_44503/figures/PL-RMSD.png
 results/md/DXR_reference/replicate_44503/figures/PL-RMSD.svg
 results/md/DXR_reference/replicate_44503/figures/P-RMSF.png
 results/md/DXR_reference/replicate_44503/figures/P-RMSF.svg
+results/md/DXR_reference/replicate_44503/figures/P-SSE_Histogram.png
+results/md/DXR_reference/replicate_44503/figures/P-SSE_Histogram.svg
+results/md/DXR_reference/replicate_44503/figures/P-SSE_Timeline.png
+results/md/DXR_reference/replicate_44503/figures/P-SSE_Timeline.svg
 ```
 
 At this stage, this README documents the figure set and interpretation. Binary figure files can be committed locally with `git add`.
