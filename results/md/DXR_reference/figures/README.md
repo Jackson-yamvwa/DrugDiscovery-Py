@@ -4,6 +4,8 @@
 
 ## Source figure files received
 
+### Ligand and contact-summary figures
+
 ```text
 LP-Contacts_2d-Summary.svg
 L-Properties(1).png
@@ -14,6 +16,17 @@ L-Torsions.svg
 L-Torsions-2d.png
 PL-Contacts_Histogram.png
 PL-Contacts_Histogram.svg
+```
+
+### Protein/contact-timeline figures
+
+```text
+PL-Contacts_Timeline.png
+PL-Contacts_Timeline.svg
+P-RMSF.png
+P-RMSF.svg
+P-SSE_Histogram.png
+P-SSE_Histogram.svg
 ```
 
 ## Figure interpretation summary
@@ -58,6 +71,18 @@ The contact histogram confirms that the dominant DXR reference interactions invo
 | Lys99 | Significant π-cation or water-mediated contribution in the report-derived interaction profile |
 | Val84, Ala97, Leu76, Leu200, Ile214 | Hydrophobic pocket support |
 
+### Protein–ligand contact timeline
+
+The contact timeline shows that **Asp148** and **Tyr150** maintain near-continuous interaction bands across the 100 ns trajectory. **Val84**, **Ala97**, **Lys99**, **Leu76**, **Leu200**, **Ile214**, and **Asp215** appear intermittently. This pattern supports a reference binding mode dominated by persistent Asp148/Tyr150 anchoring, with additional hydrophobic and water-mediated/polar contacts contributing episodically.
+
+### Protein RMSF
+
+The protein RMSF figure shows that most binding-site residues remain relatively stable, while larger RMSF peaks occur in loop/terminal or flexible regions outside the central binding-pocket scaffold. Green vertical markers indicate ligand-contacting residues. The contact residues cluster largely in lower-RMSF regions, supporting a stable binding-site environment for the reference ligand.
+
+### Protein secondary structure elements
+
+The SSE histogram shows persistent alpha-helical and beta-strand segments throughout the protein. Secondary-structure content remains broadly stable over the 100 ns trajectory, supporting the conclusion that the global fold is maintained during the DXR reference simulation.
+
 ### 2D ligand–protein contact diagram
 
 The 2D summary diagram highlights the reference interaction fingerprint involving:
@@ -69,7 +94,7 @@ The 2D summary diagram highlights the reference interaction fingerprint involvin
 
 ## Manuscript-ready figure interpretation
 
-The DXR reference ligand figures indicate stable accommodation of the co-crystallized ligand within the PfCDPK4 ATP-binding pocket during the 100 ns simulation. The ligand property plots show low internal RMSD, stable radius of gyration, absence of intramolecular hydrogen bonding, and moderate solvent-exposure fluctuations. Ligand RMSF analysis indicates that the central scaffold remains relatively stable, with higher mobility localized to peripheral substituent atoms. The protein–ligand contact histogram and 2D contact summary identify Asp148 and Tyr150 as the dominant reference anchoring residues, with additional contribution from Lys99 and hydrophobic residues including Val84, Ala97, Leu76, Leu200, and Ile214. Together, these figures support use of the DXR trajectory as a dynamic reference profile for evaluating candidate PfCDPK4 inhibitors.
+The DXR reference ligand figures indicate stable accommodation of the co-crystallized ligand within the PfCDPK4 ATP-binding pocket during the 100 ns simulation. The ligand property plots show low internal RMSD, stable radius of gyration, absence of intramolecular hydrogen bonding, and moderate solvent-exposure fluctuations. Ligand RMSF analysis indicates that the central scaffold remains relatively stable, with higher mobility localized to peripheral substituent atoms. Protein RMSF and SSE plots support preservation of the global fold and relative stability of ligand-contacting residues. The protein–ligand contact histogram, timeline, and 2D contact summary identify Asp148 and Tyr150 as the dominant reference anchoring residues, with additional contribution from Lys99 and hydrophobic residues including Val84, Ala97, Leu76, Leu200, and Ile214. Together, these figures support use of the DXR trajectory as a dynamic reference profile for evaluating candidate PfCDPK4 inhibitors.
 
 ## Repository handling decision
 
@@ -85,6 +110,12 @@ results/md/DXR_reference/figures/L-Torsions.svg
 results/md/DXR_reference/figures/L-Torsions-2d.png
 results/md/DXR_reference/figures/PL-Contacts_Histogram.png
 results/md/DXR_reference/figures/PL-Contacts_Histogram.svg
+results/md/DXR_reference/figures/PL-Contacts_Timeline.png
+results/md/DXR_reference/figures/PL-Contacts_Timeline.svg
+results/md/DXR_reference/figures/P-RMSF.png
+results/md/DXR_reference/figures/P-RMSF.svg
+results/md/DXR_reference/figures/P-SSE_Histogram.png
+results/md/DXR_reference/figures/P-SSE_Histogram.svg
 ```
 
 At this stage, this README documents the figure set and its scientific interpretation. Binary figure upload can be performed locally with `git add`, or through a future GitHub file upload workflow if binary support is configured.
