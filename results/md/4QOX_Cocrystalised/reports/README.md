@@ -4,6 +4,8 @@
 
 ## Source files received
 
+### Initial Desmond run files
+
 ```text
 4QOX-Cocrystalised.cfg
 4QOX-Cocrystalised.cms
@@ -13,18 +15,34 @@
 4QOX-Cocrystalised.msj
 ```
 
+### Multisim/output package files
+
+```text
+4QOX-Cocrystalised_1-out.tgz
+4QOX-Cocrystalised_2-out.tgz
+4QOX-Cocrystalised_3-out.tgz
+4QOX-Cocrystalised_4-out.tgz
+4QOX-Cocrystalised_6-out.tgz
+4QOX-Cocrystalised_7-out.tgz
+4QOX-Cocrystalised_multisim.log
+4QOX-Cocrystalised-in.cms
+4QOX-Cocrystalised-multisim_checkpoint
+```
+
 ## Repository handling decision
 
-The uploaded files represent a full Desmond run package for the 4QOX co-crystallized/reference ligand system. The binary/runtime files should not be committed directly unless Git LFS or external archival storage is configured.
+The uploaded files represent a full Desmond/Multisim run package for the 4QOX co-crystallized/reference ligand system. Binary/runtime files should not be committed directly unless Git LFS or external archival storage is configured.
 
 | File | Role | Repository decision |
 |---|---|---|
 | `4QOX-Cocrystalised.cfg` | Desmond run configuration | Document key settings; optionally commit later if needed |
-| `4QOX-Cocrystalised.cms` | Full Desmond system structure | Do not commit without Git LFS |
-| `4QOX-Cocrystalised.cpt` | Checkpoint file | Do not commit without Git LFS |
+| `4QOX-Cocrystalised.cms` / `4QOX-Cocrystalised-in.cms` | Full Desmond system structure | Do not commit without Git LFS |
+| `4QOX-Cocrystalised.cpt` / `4QOX-Cocrystalised-multisim_checkpoint` | Checkpoint files | Do not commit without Git LFS |
 | `4QOX-Cocrystalised.ene` | Energy output | Do not commit without compression/LFS; parse summary first |
-| `4QOX-Cocrystalised.log` | Full execution log | Summarize key metadata; raw log optional if size acceptable |
+| `4QOX-Cocrystalised.log` | Main Desmond execution log | Summarize key metadata; raw log optional if size acceptable |
+| `4QOX-Cocrystalised_multisim.log` | Multisim workflow log | Document stage progression and completion |
 | `4QOX-Cocrystalised.msj` | Desmond job/control file | Document key settings; optional commit later |
+| `4QOX-Cocrystalised_*out.tgz` | Stage output archives | Do not commit without Git LFS; extract only compact analysis outputs |
 
 ## Key run metadata
 
@@ -32,6 +50,8 @@ The uploaded files represent a full Desmond run package for the 4QOX co-crystall
 |---|---:|
 | System/job name | `4QOX-Cocrystalised` |
 | Engine | Desmond / Schrödinger 2019-4 |
+| Multisim version | 3.8.5.19 |
+| mmshare version | 4.8 |
 | Backend | `mdsim` |
 | Execution mode | GPU Desmond |
 | GPU | NVIDIA GeForce RTX 3080 |
@@ -46,16 +66,33 @@ The uploaded files represent a full Desmond run package for the 4QOX co-crystall
 | Cutoff radius | 9.0 Å |
 | Coulomb method | `useries` |
 | Velocity seed | 2007 |
-| Restraints | none |
+| Restraints | none for final production stage |
 | Checkpoint interval | 240.06 ps |
+
+## Multisim workflow summary
+
+The Multisim workflow was launched with the Schrödinger `multisim` utility in umbrella mode. The workflow contained eight stages:
+
+| Stage | Description | Status |
+|---:|---|---|
+| 1 | Task/system detection | Completed |
+| 2 | Brownian Dynamics NVT, 10 K, small timesteps, solute heavy-atom restraints, 100 ps | Completed |
+| 3 | NVT, 10 K, small timesteps, solute heavy-atom restraints, 12 ps | Completed |
+| 4 | NPT, 10 K, solute heavy-atom restraints, 12 ps | Completed |
+| 5 | `solvate_pocket` | Skipped |
+| 6 | NPT with solute heavy-atom restraints, 12 ps | Completed |
+| 7 | NPT without restraints, 24 ps | Completed |
+| 8 | Final production simulation | Completed |
 
 ## Execution status
 
-The log indicates that the simulation reached the intended endpoint at approximately **100,000 ps** and ended normally. The final log section reports writing the last checkpoint at **100000.008 ps**, followed by `finished`, license check-in, and `Child returned 0`.
+The main Desmond log indicates that the simulation reached the intended endpoint at approximately **100,000 ps** and ended normally. The final log section reports writing the last checkpoint at **100000.008 ps**, followed by `finished`, license check-in, and `Child returned 0`.
+
+The Multisim workflow also completed successfully. Stage 8, the production simulation, ran from **10:22:08 to 13:34:37 on 22 Feb 2026**, with a duration of **3 h 12 min 29 s**. The full Multisim workflow completed in **3 h 14 min 53 s**, with total GPU time of **3 h 14 min 14 s** across six GPU subjobs.
 
 ## Performance note
 
-The run used GPU Desmond on an NVIDIA GeForce RTX 3080. The log reports a final total rate of approximately **749.160 ns/day**.
+The run used GPU Desmond on an NVIDIA GeForce RTX 3080. The main Desmond log reports a final total rate of approximately **749.160 ns/day**.
 
 ## Scientific role in the project
 
