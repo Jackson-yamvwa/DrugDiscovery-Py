@@ -2,6 +2,16 @@
 
 **Update timestamp:** 2026-05-22
 
+## External figure archive
+
+The working directory / external archive for the DXR reference MD figure files is:
+
+```text
+https://drive.google.com/drive/folders/1wBNP3xXV9h2tzy1CzBYF00zmpiEAotgN
+```
+
+Use this location for storing or retrieving binary figure artifacts that are not yet committed to GitHub.
+
 ## Source figure files received
 
 ### Ligand and contact-summary figures
